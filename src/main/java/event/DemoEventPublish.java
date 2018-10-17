@@ -2,7 +2,6 @@ package event;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,12 +9,11 @@ import org.springframework.stereotype.Component;
  * @date 2018/10/16
  */
 @Component
-@Scope("prototype")
 public class DemoEventPublish {
     @Autowired
     ApplicationContext applicationContext;
 
-    DemoEvent demoEvent;
+    private DemoEvent demoEvent;
 
     public void publish(String msg) {
         demoEvent = new DemoEvent(this, msg);
