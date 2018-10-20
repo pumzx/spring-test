@@ -121,6 +121,8 @@ public class Main {
         for (int i = 0; i < len; i++) {
             asyncFunctionService.execGetInt(i);
         }
+
+        // 正常情况是不需要关闭线程池的
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
