@@ -13,7 +13,7 @@ import java.io.IOException;
  * @date 2018/10/15
  */
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         //startFun();
         //startJavaFun();
         //startAopFun();
@@ -22,7 +22,8 @@ public class Main {
         //startBeanFun();
         //startProfileFun();
         //startEventFun();
-        startAwareFun();
+        //startAwareFun();
+        startAsyncFun();
     }
 
     private static void startFun() {
@@ -103,6 +104,17 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AwareFunConfig.class);
         AwareFunctionService awareFunctionService = context.getBean(AwareFunctionService.class);
         awareFunctionService.outPutInfo();
+
+        context.close();
+    }
+
+    private static void startAsyncFun() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AsyncFunConfig.class);
+        AsyncFunctionService asyncFunctionService = context.getBean(AsyncFunctionService.class);
+        for (int i=0; i<10; i++) {
+            System.out.println(asyncFunctionService.execGetInt(i));
+            System.out.println(asyncFunctionService.execAddInt(i));
+        }
 
         context.close();
     }
