@@ -5,7 +5,7 @@ import condition.WindowsCondition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
-import serviceimpl.ListService;
+import service.ListService;
 import serviceimpl.MacOsListService;
 import serviceimpl.WindowsListService;
 

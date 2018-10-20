@@ -4,7 +4,7 @@ import config.*;
 import event.DemoEventPublish;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import profile.ProfileDemo;
-import serviceimpl.ListService;
+import service.ListService;
 import serviceimpl.*;
 
 import java.io.IOException;
@@ -30,7 +30,8 @@ public class Main {
         //startAwareFun();
         //startAsyncFun();
         //startScheduleFun();
-        startConditionFun();
+        //startConditionFun();
+        startWiselyFun();
     }
 
     private static void startFun() {
@@ -145,6 +146,14 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConditionConfig.class);
         ListService listService = context.getBean(ListService.class);
         System.out.println(context.getEnvironment().getProperty("os.name") + " list cmd is " + listService.showListCmd());
+
+        context.close();
+    }
+
+    private static void startWiselyFun() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(WiselyFunConfig.class);
+        WiselyFunctionService wiselyFunctionService = context.getBean(WiselyFunctionService.class);
+        wiselyFunctionService.outputResult();
 
         context.close();
     }

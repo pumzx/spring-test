@@ -1,4 +1,4 @@
-package aop.annotation;
+package annotation;
 
 import java.lang.annotation.*;
 
