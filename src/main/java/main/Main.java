@@ -7,6 +7,7 @@ import profile.ProfileDemo;
 import serviceimpl.*;
 
 import java.io.IOException;
+import java.util.concurrent.FutureTask;
 
 /**
  * @author panzhixiong
@@ -111,11 +112,17 @@ public class Main {
     private static void startAsyncFun() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AsyncFunConfig.class);
         AsyncFunctionService asyncFunctionService = context.getBean(AsyncFunctionService.class);
-        for (int i=0; i<10; i++) {
-            System.out.println(asyncFunctionService.execGetInt(i));
-            System.out.println(asyncFunctionService.execAddInt(i));
+        AsyncFunConfig asyncFunConfig = context.getBean(AsyncFunConfig.class);
+        int len = 10;
+        for (int i = 0; i < len; i++) {
+            asyncFunctionService.execGetInt(i);
         }
-
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        asyncFunConfig.closePool();
         context.close();
     }
 }

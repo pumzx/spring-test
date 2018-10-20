@@ -11,12 +11,9 @@ import org.springframework.stereotype.Service;
 public class AsyncFunctionService {
 
     @Async
-    public Integer execGetInt(Integer i) {
-        return i;
+    public void execGetInt(Integer i) {
+        System.out.println(Thread.currentThread().getName());
+        System.out.println(i);
     }
 
-    @Async
-    public Integer execAddInt(Integer i) {
-        return i+1;
-    }
 }
