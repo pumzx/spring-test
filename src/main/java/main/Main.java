@@ -21,7 +21,8 @@ public class Main {
         //startElFun();
         //startBeanFun();
         //startProfileFun();
-        startEventFun();
+        //startEventFun();
+        startAwareFun();
     }
 
     private static void startFun() {
@@ -89,11 +90,19 @@ public class Main {
         context.close();
     }
 
-    public static void startEventFun() {
+    private static void startEventFun() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(EventFunConfig.class);
         DemoEventPublish eventPublish = context.getBean(DemoEventPublish.class);
         eventPublish.publish("hello,event!");
         eventPublish.publishOther("other msg");
+
+        context.close();
+    }
+
+    private static void startAwareFun() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AwareFunConfig.class);
+        AwareFunctionService awareFunctionService = context.getBean(AwareFunctionService.class);
+        awareFunctionService.outPutInfo();
 
         context.close();
     }
