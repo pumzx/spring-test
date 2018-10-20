@@ -4,6 +4,7 @@ import config.*;
 import event.DemoEventPublish;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import profile.ProfileDemo;
+import serviceimpl.ListService;
 import serviceimpl.*;
 
 import java.io.IOException;
@@ -28,7 +29,8 @@ public class Main {
         //startEventFun();
         //startAwareFun();
         //startAsyncFun();
-        startScheduleFun();
+        //startScheduleFun();
+        startConditionFun();
     }
 
     private static void startFun() {
@@ -137,5 +139,13 @@ public class Main {
         System.out.println("now:" + sdf.format(new Date()));
 
         //context.close();
+    }
+
+    private static void startConditionFun() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConditionConfig.class);
+        ListService listService = context.getBean(ListService.class);
+        System.out.println(context.getEnvironment().getProperty("os.name") + " list cmd is " + listService.showListCmd());
+
+        context.close();
     }
 }
