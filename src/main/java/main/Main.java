@@ -7,13 +7,16 @@ import profile.ProfileDemo;
 import serviceimpl.*;
 
 import java.io.IOException;
-import java.util.concurrent.FutureTask;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author panzhixiong
  * @date 2018/10/15
  */
 public class Main {
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+
     public static void main(String[] args) {
         //startFun();
         //startJavaFun();
@@ -24,7 +27,8 @@ public class Main {
         //startProfileFun();
         //startEventFun();
         //startAwareFun();
-        startAsyncFun();
+        //startAsyncFun();
+        startScheduleFun();
     }
 
     private static void startFun() {
@@ -124,5 +128,12 @@ public class Main {
         }
         asyncFunConfig.closePool();
         context.close();
+    }
+
+    private static void startScheduleFun() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ScheduledFunConfig.class);
+        System.out.println("now:" + sdf.format(new Date()));
+
+        //context.close();
     }
 }
